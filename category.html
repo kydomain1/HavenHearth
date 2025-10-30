@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category - HavenHearth</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="top-bar">
+            <div class="container">
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <div class="header-date">
+                    <span id="current-date"></span>
+                </div>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">
+                        <h1>HAVEN<span>HEARTH</span></h1>
+                        <p class="tagline">Your Editorial Guide to Modern Living</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-bar">
+            <div class="container">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="category.html?cat=fashion">Fashion & Accessories</a></li>
+                    <li><a href="category.html?cat=health">Health & Beauty</a></li>
+                    <li><a href="category.html?cat=home">Home & Garden</a></li>
+                    <li><a href="category.html?cat=travel">Travel & Accommodation</a></li>
+                    <li><a href="category.html?cat=finance">Finance & Insurance</a></li>
+                    <li><a href="category.html?cat=food">Food & Beverage</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search articles...">
+                    <button id="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Category Hero -->
+    <section class="category-hero">
+        <div class="container">
+            <h1 id="category-title">All Articles</h1>
+            <p>Discover curated content across our lifestyle categories</p>
+        </div>
+    </section>
+
+    <!-- Category Articles -->
+    <section class="articles-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="results-count">
+                    <span id="results-text">Showing 5 articles</span>
+                </div>
+                <div class="sort-filter">
+                    <select id="sort-select">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="popular">Most Popular</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="articles-grid" id="articles-container">
+                <article class="article-card fashion" data-date="2025-03-15" data-category="fashion">
+                    <a href="articles/luxury-sustainable-fashion.html">
+                        <div class="article-image">
+                            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&h=600&fit=crop" alt="Sustainable Fashion">
+                            <span class="category-badge fashion">Fashion & Accessories</span>
+                        </div>
+                        <div class="article-content">
+                            <h3>The Rise of Luxury Sustainable Fashion: 10 Brands Leading the Change</h3>
+                            <p class="excerpt">Discover how high-end fashion brands are revolutionizing the industry with eco-friendly practices without compromising on style and quality.</p>
+                            <div class="meta">
+                                <span class="date"><i class="far fa-calendar"></i> March 15, 2025</span>
+                                <span class="read-time"><i class="far fa-clock"></i> 8 min read</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="article-card health" data-date="2025-01-22" data-category="health">
+                    <a href="articles/wellness-routines.html">
+                        <div class="article-image">
+                            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=600&fit=crop" alt="Wellness Routine">
+                            <span class="category-badge health">Health & Beauty</span>
+                        </div>
+                        <div class="article-content">
+                            <h3>Morning Wellness Routines That Actually Work: A Complete Guide</h3>
+                            <p class="excerpt">Transform your mornings with these science-backed wellness practices that boost energy and mental clarity throughout your day.</p>
+                            <div class="meta">
+                                <span class="date"><i class="far fa-calendar"></i> January 22, 2025</span>
+                                <span class="read-time"><i class="far fa-clock"></i> 7 min read</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="article-card home" data-date="2025-05-10" data-category="home">
+                    <a href="articles/urban-garden-transformation.html">
+                        <div class="article-image">
+                            <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&h=600&fit=crop" alt="Urban Garden">
+                            <span class="category-badge home">Home & Garden</span>
+                        </div>
+                        <div class="article-content">
+                            <h3>Urban Garden Transformation: From Concrete to Green Paradise</h3>
+                            <p class="excerpt">Learn how to create a thriving garden space in the city with expert tips, product recommendations, and practical guidance.</p>
+                            <div class="meta">
+                                <span class="date"><i class="far fa-calendar"></i> May 10, 2025</span>
+                                <span class="read-time"><i class="far fa-clock"></i> 9 min read</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="article-card travel" data-date="2025-06-28" data-category="travel">
+                    <a href="articles/boutique-hotels-europe.html">
+                        <div class="article-image">
+                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop" alt="Boutique Hotel">
+                            <span class="category-badge travel">Travel & Accommodation</span>
+                        </div>
+                        <div class="article-content">
+                            <h3>10 Boutique Hotels in Europe That Redefine Luxury</h3>
+                            <p class="excerpt">Discover unique and charming boutique hotels across Europe that offer unforgettable experiences and personalized service.</p>
+                            <div class="meta">
+                                <span class="date"><i class="far fa-calendar"></i> June 28, 2025</span>
+                                <span class="read-time"><i class="far fa-clock"></i> 10 min read</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="article-card food" data-date="2025-08-14" data-category="food">
+                    <a href="articles/artisan-coffee-guide.html">
+                        <div class="article-image">
+                            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800&h=600&fit=crop" alt="Artisan Coffee">
+                            <span class="category-badge food">Food & Beverage</span>
+                        </div>
+                        <div class="article-content">
+                            <h3>The Ultimate Guide to Artisan Coffee: Beans, Brewers & Techniques</h3>
+                            <p class="excerpt">Elevate your coffee experience with our comprehensive guide to specialty beans, professional brewing equipment, and expert techniques.</p>
+                            <div class="meta">
+                                <span class="date"><i class="far fa-calendar"></i> August 14, 2025</span>
+                                <span class="read-time"><i class="far fa-clock"></i> 11 min read</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content" data-aos="fade-up">
+                <h2>Subscribe to Our Newsletter</h2>
+                <p>Get the latest articles, recommendations, and exclusive content delivered to your inbox weekly.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HAVEN<span>HEARTH</span></h3>
+                    <p>Your editorial guide to modern living. Discover curated content across fashion, health, home, travel, finance, and food.</p>
+                    <div class="social-links">
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="category.html?cat=fashion">Fashion & Accessories</a></li>
+                        <li><a href="category.html?cat=health">Health & Beauty</a></li>
+                        <li><a href="category.html?cat=home">Home & Garden</a></li>
+                        <li><a href="category.html?cat=travel">Travel & Accommodation</a></li>
+                        <li><a href="category.html?cat=finance">Finance & Insurance</a></li>
+                        <li><a href="category.html?cat=food">Food & Beverage</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="advertise.html">Advertise</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-envelope"></i> editorial@havenhearth.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (212) 847-3920</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 425 Fifth Avenue, Suite 1800<br>New York, NY 10016</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HavenHearth. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Category filtering based on URL parameter
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const category = urlParams.get('cat');
+            const articles = document.querySelectorAll('.article-card');
+            
+            if (category) {
+                articles.forEach(article => {
+                    if (!article.classList.contains(category)) {
+                        article.style.display = 'none';
+                    }
+                });
+                updateResultsCount();
+            }
+
+            // Sort functionality
+            document.getElementById('sort-select').addEventListener('change', function() {
+                const sortBy = this.value;
+                const container = document.getElementById('articles-container');
+                const articlesArray = Array.from(articles);
+
+                articlesArray.sort((a, b) => {
+                    if (sortBy === 'newest') {
+                        return new Date(b.dataset.date) - new Date(a.dataset.date);
+                    } else if (sortBy === 'oldest') {
+                        return new Date(a.dataset.date) - new Date(b.dataset.date);
+                    }
+                    return 0;
+                });
+
+                articlesArray.forEach(article => container.appendChild(article));
+            });
+
+            function updateResultsCount() {
+                const visibleArticles = Array.from(articles).filter(article => 
+                    article.style.display !== 'none'
+                );
+                document.getElementById('results-text').textContent = 
+                    `Showing ${visibleArticles.length} article${visibleArticles.length !== 1 ? 's' : ''}`;
+            }
+        });
+    </script>
+</body>
+</html>
+

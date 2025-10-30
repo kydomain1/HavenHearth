@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - HavenHearth</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <style>
+        .search-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            padding: 80px 0 60px;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .search-hero h1 {
+            font-size: 3rem;
+            color: var(--white);
+            margin-bottom: 30px;
+        }
+
+        .search-hero .search-box {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            background: var(--white);
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .search-hero .search-box input {
+            flex: 1;
+            padding: 18px 30px;
+            border: none;
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        .search-hero .search-box button {
+            padding: 18px 40px;
+            background: var(--accent-color);
+            color: var(--white);
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-hero .search-box button:hover {
+            background: var(--primary-color);
+        }
+
+        .search-results-section {
+            padding: 60px 0;
+            background: var(--white);
+            min-height: 500px;
+        }
+
+        .search-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--gray-light);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .results-info {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+        }
+
+        .results-info strong {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .search-query {
+            color: var(--primary-color);
+            font-style: italic;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .no-results i {
+            font-size: 5rem;
+            color: var(--gray-medium);
+            margin-bottom: 30px;
+        }
+
+        .no-results h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .no-results p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .search-suggestions {
+            background: var(--bg-light);
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-suggestions h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .search-suggestions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .search-suggestions li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .search-suggestions li:last-child {
+            border-bottom: none;
+        }
+
+        .search-suggestions a {
+            color: var(--accent-color);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .search-suggestions a:hover {
+            color: var(--primary-color);
+            padding-left: 10px;
+        }
+
+        .loading-indicator {
+            text-align: center;
+            padding: 60px 20px;
+            display: none;
+        }
+
+        .loading-indicator i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .search-hero h1 {
+                font-size: 2rem;
+            }
+
+            .search-hero .search-box {
+                flex-direction: column;
+                border-radius: 10px;
+            }
+
+            .search-hero .search-box button {
+                padding: 15px;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="top-bar">
+            <div class="container">
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <div class="header-date">
+                    <span id="current-date"></span>
+                </div>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">
+                        <h1>HAVEN<span>HEARTH</span></h1>
+                        <p class="tagline">Your Editorial Guide to Modern Living</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-bar">
+            <div class="container">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="category.html?cat=fashion">Fashion & Accessories</a></li>
+                    <li><a href="category.html?cat=health">Health & Beauty</a></li>
+                    <li><a href="category.html?cat=home">Home & Garden</a></li>
+                    <li><a href="category.html?cat=travel">Travel & Accommodation</a></li>
+                    <li><a href="category.html?cat=finance">Finance & Insurance</a></li>
+                    <li><a href="category.html?cat=food">Food & Beverage</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Search Hero -->
+    <section class="search-hero">
+        <div class="container">
+            <h1><i class="fas fa-search"></i> Search Articles</h1>
+            <form class="search-box" id="search-form">
+                <input type="text" id="search-input-main" placeholder="Search for articles, topics, categories..." autofocus>
+                <button type="submit"><i class="fas fa-search"></i> Search</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Loading Indicator -->
+    <div class="loading-indicator" id="loading">
+        <i class="fas fa-spinner"></i>
+        <p>Searching articles...</p>
+    </div>
+
+    <!-- Search Results -->
+    <section class="search-results-section" id="results-section">
+        <div class="container">
+            <!-- Search Stats -->
+            <div class="search-stats" id="search-stats" style="display: none;">
+                <div class="results-info">
+                    <span id="results-count">0</span> results found for <strong class="search-query" id="search-query-display">""</strong>
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All Categories</button>
+                    <button class="filter-btn" data-filter="fashion">Fashion</button>
+                    <button class="filter-btn" data-filter="health">Health</button>
+                    <button class="filter-btn" data-filter="home">Home</button>
+                    <button class="filter-btn" data-filter="travel">Travel</button>
+                    <button class="filter-btn" data-filter="food">Food</button>
+                </div>
+            </div>
+
+            <!-- Articles Grid -->
+            <div class="articles-grid" id="search-results">
+                <!-- Results will be inserted here by JavaScript -->
+            </div>
+
+            <!-- No Results -->
+            <div class="no-results" id="no-results" style="display: none;">
+                <i class="fas fa-search-minus"></i>
+                <h2>No Results Found</h2>
+                <p>We couldn't find any articles matching <strong class="search-query" id="no-results-query">""</strong></p>
+                
+                <div class="search-suggestions">
+                    <h3>Search Tips:</h3>
+                    <ul>
+                        <li><i class="fas fa-lightbulb"></i> Try different keywords or phrases</li>
+                        <li><i class="fas fa-lightbulb"></i> Use more general terms</li>
+                        <li><i class="fas fa-lightbulb"></i> Check your spelling</li>
+                        <li><i class="fas fa-lightbulb"></i> Try searching by category name</li>
+                    </ul>
+                    
+                    <h3 style="margin-top: 30px;">Popular Topics:</h3>
+                    <ul>
+                        <li><a href="search.html?q=fashion">Fashion & Style</a></li>
+                        <li><a href="search.html?q=health">Health & Wellness</a></li>
+                        <li><a href="search.html?q=home">Home & Garden</a></li>
+                        <li><a href="search.html?q=travel">Travel & Hotels</a></li>
+                        <li><a href="search.html?q=coffee">Coffee & Beverages</a></li>
+                    </ul>
+                </div>
+                
+                <a href="index.html" class="product-link" style="display: inline-block; margin-top: 30px;">
+                    <i class="fas fa-home"></i> Back to Homepage
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content" data-aos="fade-up">
+                <h2>Subscribe to Our Newsletter</h2>
+                <p>Get the latest articles, recommendations, and exclusive content delivered to your inbox weekly.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HAVEN<span>HEARTH</span></h3>
+                    <p>Your editorial guide to modern living. Discover curated content across fashion, health, home, travel, finance, and food.</p>
+                    <div class="social-links">
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="category.html?cat=fashion">Fashion & Accessories</a></li>
+                        <li><a href="category.html?cat=health">Health & Beauty</a></li>
+                        <li><a href="category.html?cat=home">Home & Garden</a></li>
+                        <li><a href="category.html?cat=travel">Travel & Accommodation</a></li>
+                        <li><a href="category.html?cat=finance">Finance & Insurance</a></li>
+                        <li><a href="category.html?cat=food">Food & Beverage</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="advertise.html">Advertise</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-envelope"></i> editorial@havenhearth.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (212) 847-3920</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 425 Fifth Avenue, Suite 1800<br>New York, NY 10016</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HavenHearth. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
+    <script src="js/search.js"></script>
+</body>
+</html>
+
